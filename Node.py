@@ -20,7 +20,7 @@ class Node:
     # heuristic function
     def forward_cost(self):
         for i in range(len(self.state)-1):
-            if self.state[i+1] - self.state[i] != 1:
+            if abs(self.state[i+1] - self.state[i]) != 1:
                 self.foreCost += 1
         return self.foreCost
 

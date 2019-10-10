@@ -10,6 +10,10 @@ def astar(state):
     node0 = Node(state, None)
     frontier.push(node0)
 
+    # record the visited node
+    visited = []
+    visited.append(node0.state)
+
     while True:
         solution = []
 
@@ -34,7 +38,9 @@ def astar(state):
             childnode.calculate_priority()
 
             if not frontier.find(childnode):
-                frontier.push(childnode)
+                if not childnode.state in visited:
+                    frontier.push(childnode)
+                    visited.append(childnode.state)
             else:
                 node_in_queue = frontier.get_node(childnode)
                 if node_in_queue.priority > childnode.priority:
@@ -47,6 +53,10 @@ def ucs(state):
     frontier = PriorityQueue()
     node0 = Node(state, None)
     frontier.push(node0)
+
+    # record the visited node
+    visited = []
+    visited.append(node0.state)
 
     while True:
         solution = []
@@ -73,7 +83,9 @@ def ucs(state):
             childnode.priority = childnode.backCost
 
             if not frontier.find(childnode):
-                frontier.push(childnode)
+                if not childnode.state in visited:
+                    frontier.push(childnode)
+                    visited.append(childnode.state)
             else:
                 node_in_queue = frontier.get_node(childnode)
                 if node_in_queue.priority > childnode.priority:
@@ -86,4 +98,5 @@ goal_state = [1, 2, 3, 4, 5, 6]
 random.shuffle(cake_state)
 cake_state.append(6)
 
+print(astar(cake_state)[::-1])
 print(ucs(cake_state)[::-1])

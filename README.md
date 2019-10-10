@@ -19,12 +19,6 @@ A heuristic function will calculate the occurrence times of two adjacent number 
 
 Take `[3, 1, 4, 5, 2, 6]` for example, the heuristic value is `4` ( `[3, 1]`, `[1, 4]`, `[5, 2]`, `[2, 6]`don't have adjacent value)
 
-Because smallest cake should be on the top, we define the first number as the cake on the top and the last number as plate. 
-So we change the heuristic function to a stricter one: Only if the right number minus the left one equals `1` in an adjacent number pair, the heuristic value won't change. 
-Otherwise, the heuristic value will plus `1`.
-
-Take `[5, 4, 3, 2, 1, 6]` for example, the heuristic value is `5` 
-
 It is consistent because when we move closer to the goal, the heuristic value will be smaller.
 
 It is admissible because the heuristic value is less than the real cost to flip the cakes to a correct order.
